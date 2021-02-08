@@ -11,6 +11,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.config.productionTip = false
+Vue.filter('currency', value => String(value).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'));
 
 window.axios = axios;
 window.axios_api = axios.create({
@@ -21,6 +22,7 @@ window.axios_api = axios.create({
     'Content-type': 'application/json',
   },
 });
+
 new Vue({
   router,
   store,

@@ -4,17 +4,21 @@
     class="container__search"
   >
     <div class="container d-flex justify-content-between align-items-center py-3">
-      <img
-        src="../../assets/Logo_ML.png"
-        alt="Mercado libre CO"
-      >
+      <router-link
+        id="logo"
+        to="/">
+        <img
+          src="../../assets/Logo_ML.png"
+          alt="Mercado libre CO"
+        >
+      </router-link>
       <form class="form-inline flex-grow-1 p-relative pl-4">
         <input
           id="input-search-results"
           v-model="search"
           class="container__search--input form-control mr-sm-2"
           type="text"
-          placeholder="Buscar..."
+          placeholder="Nunca dejes de buscar"
           aria-label="Search"
           @keyup.enter.prevent="submitSearch(search)"
         >
@@ -36,6 +40,9 @@
                 search: ''
             }
         },
+         created() {
+          document.title = 'Mercado libre';
+        },
         methods: {
             // Method to send form data to endpoint
             submitSearch(search) {
@@ -52,7 +59,8 @@
 
 
  <style lang="scss">
-    .container__search {
+    #app {
+      .container__search {
         background: #fee600;
         .form-inline {
             position: relative;
@@ -65,5 +73,6 @@
         right: 2rem;   
       }
     }
+  }
 
 </style>

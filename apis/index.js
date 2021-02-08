@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const app = express();
 
 app.use(cors());
-
+  // Search endpoint
   app.get('/api/items', (req, res) => {
     // get search params 
     var searchParam = req.query.q || '';
@@ -51,6 +51,40 @@ app.use(cors());
             "items": items
         });
     });
+  });
+
+  // Individual item endpoint
+  app.get('/api/items/:id', (req, res) => {
+    var itemParam = req.params.id || '';
+    fetch(`https://api.mercadolibre.com/items/${itemParam}`)
+    .then(res => res.json())
+    .then(body => {
+      fetch(`https://api.mercadolibre.com/items/${itemParam}/description`)
+      .then(res => res.json())
+      .then(description => {
+        return res.send({
+          "autor": {
+              "name": "Luisny",
+              "lastname": "Ugarte"
+          },
+          "item": {
+            "id": body.id,
+            "title": body.title,
+            "price": {
+              "currency": body.currency_id,
+              "amount": body.price,
+              "decimals": Number((body.price + "").split(".")[1]) || '',
+            },
+            "picture": body.thumbnail,
+            "condition" : body.condition,
+            "free-shipping": body.shipping.free_shipping,
+            "sold_quantity": body.sold_quantity,
+            "description": description.plain_text
+          },
+      });
+      });
+    });
+
   });
   
 app.listen(3000, () => {
