@@ -16,7 +16,7 @@
     "core-js": "^3.6.5",
     "css-loader": "^5.0.1",
     "loader-utils": "^2.0.0",
-    "sass-loader": "^7.0.2",
+    "sass-loader": "^10",
     "scss-loader": "0.0.1",
     "vue": "^2.6.12",
     "vue-axios": "^3.2.4",

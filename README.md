@@ -1,4 +1,5 @@
 # mercado-libre
+# Aplicación basada en Vue.js y node que busca resultados y muestra su descripción a partir de una entrada de texto en la caja de busqueda. 
 
 ## Project setup
 ```
